@@ -84,9 +84,10 @@
 
 (defn good-enough?
   [guess prev-guess]
-  (< (Math/abs (- prev-guess
+  (< (Math/abs (/ (- prev-guess
+                     guess)
                   guess))
-     0.001))
+     0.0001))
 
 (defn average
   [x y]
@@ -111,6 +112,9 @@
   [x]
   (sqrt-iter 1.0 x 0))
 
+
+;;Exercise 1.8
+;;Use Newton's method to find cube roots
 (defn improve-cube
   [guess x]
   (/ (+ (/ x (square guess))
