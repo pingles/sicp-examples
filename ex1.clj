@@ -218,9 +218,32 @@
   [n]
   (ackermann 2 n))
 
-;; (ackermann-h 3)
-;; 16
-;; (ackermann-h 5)
-;; java.lang.StackOverflowError
-;; (ackermann-h 4)
-;; 65536
+;;(ackermann-h 0)
+;;0
+;;(ackermann-h 1)
+;;2
+;;(ackermann-h 2)
+;;4
+;;(ackermann-h 3)
+;;16
+;;(ackermann-h 4)
+;;65536
+;;(ackermann-h 5)
+;;java.lang.StackOverflowError
+;;
+;;(ackermann-h 3)
+;;(ackermann 2 3)
+;;(ackermann 1 (ackermann 2 2))
+;;(ackermann 1 (ackermann 1 (ackermann 2 1)))
+;;(ackermann 1 (ackermann 1 2))
+;;(ackermann 1 (ackermann 0 (ackermann 1 1)))
+;;(ackermann 1 (ackermann 0 2))
+;;(ackermann 1 4)
+;;(ackermann 0 (ackermann 1 3))
+;;(ackermann 0 (ackermann 0 (ackermann 1 2)))
+;;(ackermann 0 (ackermann 0 (ackermann 0 (ackermann 1 1))))
+;;(ackermann 0 (ackermann 0 (ackermann 0 2)))
+;;(ackermann 0 (ackermann 0 4))
+;;(ackermann 0 8)
+;;16
+;;phew!
