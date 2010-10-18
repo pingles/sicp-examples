@@ -171,3 +171,56 @@
 ;;5
 
 ;; this recursive procedure generates an iterative process.
+
+;;Example 1.10
+;;Ackermann's function:
+;;http://en.wikipedia.org/wiki/Ackermann_function
+;;
+
+(defn ackermann
+  [x y]
+  (cond (= y 0) 0
+        (= x 0) (* 2 y)
+        (= y 1) 2
+        :else (ackermann (- x 1)
+                         (ackermann x (- y 1)))))
+
+(defn ackermann-f
+  [n]
+  (ackermann 0 n))
+
+;; (ackermann-f 3)
+;; 6
+;; (ackermann-f 5)
+;; 10
+;;
+;; behaviour is 2n
+
+(defn ackermann-g
+  [n]
+  (ackermann 1 n))
+
+;; (ackermann-g 3)
+;; 8
+;; (ackermann-g 5)
+;; 32
+;;
+;; behaviour is 2^n
+;;
+;;(ackermann 1 3)
+;;(ackermann 0 (ackermann 1 2))
+;;(ackermann 0 (ackermann 0 (ackermann 1 1)))
+;;(ackermann 0 (ackermann 0 2))
+;;(ackermann 0 4)
+;;8
+
+(defn ackermann-h
+  [n]
+  (ackermann 2 n))
+
+;; (ackermann-h 3)
+;; 16
+;; (ackermann-h 5)
+;; java.lang.StackOverflowError
+;; (ackermann-h 4)
+;; 65536
