@@ -132,4 +132,42 @@
   [x]
   (cuberoot-iter 1.0 x 0))
 
+;;Exercise 1.9
+;;Each procedure adds 2 numbers together, using the substitution model
+;;illustrate the process generated. Are the processes iterative or
+;;recursive?
 
+(defn plus-a
+  [a b]
+  (if (= a 0)
+    b
+    (inc (plus-a (dec a) b))))
+
+;;e.g. (plus-a 3 2) :
+;;
+;;(inc (plus-a 2 2))
+;;(inc (inc (plus-a 1 2)))
+;;(inc (inc (inc plus-a 0 2)))
+;;(inc (inc (inc 2)))
+;;(inc (inc 3))
+;;(inc 4)
+;;5
+
+;; this recursive procedure generates a recursive process
+
+
+(defn plus-b
+  [a b]
+  (if (= a 0)
+    b
+    (recur (dec a) (inc b))))
+
+;;e.g. (plus-b 3 2)
+;;
+;;(plus-b 3 2)
+;;(plus-b 2 3)
+;;(plus-b 1 4)
+;;(plus-b 0 5)
+;;5
+
+;; this recursive procedure generates an iterative process.
