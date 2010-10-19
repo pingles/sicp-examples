@@ -255,6 +255,29 @@
 ;;((2^2)^2) for n = 3
 ;;((((2^2)^2)^2)^2) for n = 4
 
+
+;;1.2.2 Tree Recursion
+
+;; tree-recursive fibonacci
+(defn fib-recur
+  [n]
+  (cond (= n 0) 0
+        (= n 1) 1
+        :else (+ (fib-recur (- n 1))
+                 (fib-recur (- n 2)))))
+
+;;linear iteration fibonacci
+(defn fib-iter
+  ([n]
+   (fib-iter 1 0 n))
+  ([a b count]
+     (if (= count 0)
+       b
+       (recur (+ a b)
+              a
+              (- count 1)))))
+
+
 ;;Example 1.11
 ;;A function f is defined by the rule that f(n) = n if n<3 and
 ;;f(n) = f(n - 1) + 2f(n - 2) + 3f(n - 3) if n> 3. Write a procedure
