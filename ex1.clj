@@ -157,7 +157,7 @@
 
 
 (defn plus-b
-  [a b]
+  [a b n]
   (if (= a 0)
     b
     (recur (dec a) (inc b))))
@@ -252,8 +252,8 @@
 ;;2^^n
 ;;2^(2^2)
 ;;2^2 for n = 2
-;;((2^2)^2) for n = 3
-;;((((2^2)^2)^2)^2) for n = 4
+;;2^(2^2) for n = 3
+;;2^(2^(2^2)) for n = 4
 
 ;;Example 1.11
 ;;A function f is defined by the rule that f(n) = n if n<3 and
