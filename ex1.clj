@@ -269,7 +269,7 @@
 ;;linear iteration fibonacci
 (defn fib-iter
   ([n]
-   (fib-iter 1 0 n))
+     (fib-iter 1 0 n))
   ([a b count]
      (if (= count 0)
        b
@@ -278,18 +278,37 @@
               (- count 1)))))
 
 
+
 ;;Example 1.11
 ;;A function f is defined by the rule that f(n) = n if n<3 and
 ;;f(n) = f(n - 1) + 2f(n - 2) + 3f(n - 3) if n> 3. Write a procedure
 ;;that computes f by means of a recursive process.
 ;;Write a procedure that computes f by means of an iterative process.
 
-(defn mystery-fn
+(defn f
   [n]
   (if (< n 3)
     n
-    (+ (mystery-fn (- n 1))
+    (+ (f (- n 1))
        (* 2
-          (mystery-fn (- n 2)))
+          (f (- n 2)))
        (* 3
-          (mystery-fn (- n 3))))))
+          (f (- n 3))))))
+
+;;;a = f-3
+;;;b = f-2
+;;;c = f-1
+(defn f-iter
+  ([n]
+     (if (n < 3)
+       n
+       (f-iter 0 1 2 n)))
+  ([a b c count]
+     (if (= 0 count)
+       c
+       (recur b
+              c
+              (+ c
+                 (* 2 b)
+                 (* 3 a))
+              (dec count)))))
