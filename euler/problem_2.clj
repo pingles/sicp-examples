@@ -6,3 +6,17 @@
 ;;
 ;;Find the sum of all the even-valued terms in the sequence which do
 ;;not exceed four million.
+
+(defn fib
+  ([]
+     (concat '(0 1)
+             (fib 0 1)))
+  ([x y]
+     (lazy-seq (cons (+ x y)
+                     (fib y
+                          (+ x y))))))
+
+(reduce +
+        (filter even?
+                (take-while #(< % 4000000)
+                            (fib))))

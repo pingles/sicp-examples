@@ -157,7 +157,7 @@
 
 
 (defn plus-b
-  [a b]
+  [a b n]
   (if (= a 0)
     b
     (recur (dec a) (inc b))))
@@ -252,8 +252,8 @@
 ;;2^^n
 ;;2^(2^2)
 ;;2^2 for n = 2
-;;((2^2)^2) for n = 3
-;;((((2^2)^2)^2)^2) for n = 4
+;;2^(2^2) for n = 3
+;;2^(2^(2^2)) for n = 4
 
 
 ;;1.2.2 Tree Recursion
