@@ -332,3 +332,15 @@
                  (* 2 b)
                  (* 3 a))
               (dec count)))))
+
+;;;Example 1.12: Pascal's Triangle
+;;;Write a procedure that computes parts of Pascal's Triangle
+
+(defn pascals-triangle
+  [row col]
+  (cond (= row 1) 1
+        (or (= col 1) (= row col)) 1
+        :else (+ (pascals-triangle (dec row)
+                                   col)
+                 (pascals-triangle (dec row)
+                                   (dec col)))))
