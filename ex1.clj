@@ -278,6 +278,26 @@
               (- count 1)))))
 
 
+;;;Counting Change
+(defn first-denomination
+  [kinds-of-coins]
+  (cond (= kinds-of-coins 1) 1
+        (= kinds-of-coins 2) 5
+        (= kinds-of-coins 3) 10
+        (= kinds-of-coins 4) 25
+        (= kinds-of-coins 5) 50))
+
+(defn count-change
+  ([amount] (count-change amount 5))
+  ([amount kinds-of-coins]
+     (cond (= amount 0) 1
+           (or (< amount 0) (= kinds-of-coins 0)) 0
+           :else (+ (count-change amount
+                                  (dec kinds-of-coins))
+                    (count-change (- amount
+                                     (first-denomination kinds-of-coins))
+                                  kinds-of-coins)))))
+
 
 ;;Example 1.11
 ;;A function f is defined by the rule that f(n) = n if n<3 and
