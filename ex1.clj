@@ -320,11 +320,11 @@
 ;;;c = f-1
 (defn f-iter
   ([n]
-     (if (n < 3)
+     (if (< n 3)
        n
        (f-iter 0 1 2 n)))
   ([a b c count]
-     (if (= 0 count)
+     (if (= 2 count)
        c
        (recur b
               c
