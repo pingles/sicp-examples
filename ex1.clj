@@ -398,7 +398,7 @@
 ;; when (sine a) is evaluated?
 ;;
 ;; this is controlled by the rate at which angle is reduced below
-;; 3.0. given its divided by 3, it would appear to be O(log3n)?
+;; 3.0. given its divided by 3, it would appear to be O(log n)?
 
 
 
@@ -419,3 +419,19 @@
        (recur b
               (dec counter)
               (* b product)))))
+
+(defn square
+  [n]
+  (* n n))
+
+(defn fast-expt
+  [b n]
+  (cond (= n 0) 1
+        (even? n) (square (fast-expt b
+                                     (/ 2 n)))
+        :else (* b
+                 (fast-expt b
+                            (dec n)))))
+
+;;; the above procedure stack overflows with 10^4.
+
