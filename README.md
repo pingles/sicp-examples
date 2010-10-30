@@ -6,9 +6,11 @@ Let's see how far I get!
 Emacs Shortcuts
 ---------------
 
+        M-/ Fuzzy complete
+        M-. Jump to definition
+
 *inferior-lisp*:
         C-c C-e Evals expression with inferior lisp interpreter
-
 
 SLIME/SWANK:
         C-x C-e Evals expression in SLIME. When used with def provides
