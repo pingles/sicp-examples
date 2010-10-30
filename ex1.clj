@@ -428,10 +428,9 @@
   [b n]
   (cond (= n 0) 1
         (even? n) (square (fast-expt b
-                                     (/ 2 n)))
+                                     (/ n 2)))
         :else (* b
                  (fast-expt b
                             (dec n)))))
 
-;;; the above procedure stack overflows with 10^4.
 
