@@ -399,3 +399,23 @@
 ;;
 ;; this is controlled by the rate at which angle is reduced below
 ;; 3.0. given its divided by 3, it would appear to be O(log3n)?
+
+
+
+;;; Exponentiation
+
+(defn expt
+  [b n]
+  (if (= 0 n)
+    1
+    (* b (expt b (dec n)))))
+
+(defn expt-iter
+  ([b n]
+     (expt-iter b n 1))
+  ([b counter product]
+     (if (= counter 0)
+       product
+       (recur b
+              (dec counter)
+              (* b product)))))
