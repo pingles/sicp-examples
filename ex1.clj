@@ -455,3 +455,49 @@
            :else (recur b
                         (dec n)
                         (* a b)))))
+
+
+
+;; Exercise 1.17.  The exponentiation algorithms in this section are
+;; based on performing exponentiation by means of repeated
+;; multiplication. In a similar way, one can perform integer
+;; multiplication by means of repeated addition. The following
+;; multiplication procedure (in which it is assumed that our language
+;; can only add, not multiply) is analogous to theexpt procedure:
+
+(defn mult
+  [a b]
+  (if (= b 0)
+    0
+    (+ a
+       (mult a
+             (dec b)))))
+
+;; This algorithm takes a number of steps that is linear in b. Now
+;; suppose we include, together with addition, operations double,
+;; which doubles an integer, and halve, which divides an (even)
+;; integer by 2. Using these, design a multiplication procedure
+;; analogous to fast-expt that uses a logarithmic number of steps.
+
+(defn dbl
+  [n]
+  (* n 2))
+
+(defn halve
+  [n]
+  (/ n 2))
+
+(defn fast-mult
+  [a b]
+  (cond (= b 0) 0
+        (even? b) (fast-mult (dbl a)
+                             (halve b))
+        :else (+ a
+                 (fast-mult a
+                            (- b 1)))))
+
+;; Unsurprisingly this performs worse than the clojure.core/* fn.
+;; user=> (time (fast-mult 100000000000000000000000000000000 20))
+;; "Elapsed time: 0.149 msecs"
+;; user=> (time (* 100000000000000000000000000000000 20))
+;; "Elapsed time: 0.071 msecs"
