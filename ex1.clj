@@ -501,3 +501,28 @@
 ;; "Elapsed time: 0.149 msecs"
 ;; user=> (time (* 100000000000000000000000000000000 20))
 ;; "Elapsed time: 0.071 msecs"
+
+
+;; Exercise 1.18.  Using the results of exercises 1.16 and 1.17,
+;; devise a procedure that generates an iterative process for
+;; multiplying two integers in terms of adding, doubling, and halving
+;; and uses a logarithmic number of steps.
+
+(defn fast-mult-iter
+  ([a b] (fast-mult-iter a b 0))
+  ([a b c]
+     (cond (= b 0) c
+           (even? b) (recur (dbl a)
+                            (halve b)
+                            c)
+           :else (recur a
+                        (dec b)
+                        (+ a c)))))
+
+;; for example, 9 and 5
+;; (fast-mult-iter 9 5 0)
+;; (fast-mult-iter 9 4 9)
+;; (fast-mult-iter 18 2 9)
+;; (fast-mult-iter 36 1 9)
+;; (fast-mult-iter 36 0 45)
+
