@@ -572,4 +572,4 @@
   [a b]
   (if (= b 0)
     a
-    (gcd b (mod a b))))
+    (recur b (mod a b))))
