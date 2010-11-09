@@ -408,7 +408,8 @@
   [b n]
   (if (= 0 n)
     1
-    (* b (expt b (dec n)))))
+    (* b (expt b
+               (dec n)))))
 
 (defn expt-iter
   ([b n]
