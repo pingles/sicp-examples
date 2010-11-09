@@ -532,7 +532,7 @@
 ;; Exercise 1.19.   There is a clever algorithm for computing the
 ;; Fibonacci numbers in a logarithmic number of steps. Recall the
 ;; transformation of the state variables a and b in the fib-iter
-;; process of section 1.2.2: a  a + b and b  a. Call this
+;; process of section 1.2.2: a <- a + b and b <- a. Call this
 ;; transformation T, and observe that applying T over and over again n
 ;; times, starting with 1 and 0, produces the pair Fib(n + 1) and
 ;; Fib(n). In other words, the Fibonacci numbers are produced by
@@ -548,14 +548,35 @@
 ;; all together to complete the following procedure, which runs in a
 ;; logarithmic number of steps:
 
+;; Tpq where p = 0 and q = 1
+;; Tpq tranforms (1,0) according to:
+;; p = bq + aq + ap
+;; q = bp + aq
+;;
+;; a = 1, b = 0, p = 0, q = 1
+;; p = (0 * 1) + (1 * 1) + (1 * 0) = 1
+;; q = (0 * 0) + (1 * 1) = 1
+;;
+;; So... no for p' and q':
+;;
+;; p' = bq + aq + ap
+;; q' = bp + aq
+;;
+
+(defn new-p
+  [a b p q])
+
+(defn new-q
+  [a b p q])
+
 (defn fib-log-iter
   ([n] (fib-log-iter 1 0 0 1 n))
   ([a b p q count]
      (cond (= count 0) b
            (even? count) (recur a
                                 b
-                                p' ; compute this
-                                q' ; compute this
+                                (new-p a b p q) ; compute this
+                                (new-q a b p q) ; compute this
                                 (/ count 2))
            :else (recur (+ (* b q) (* a q) (* a p))
                         (+ (* b p) (* a q))
