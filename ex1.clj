@@ -559,15 +559,16 @@
 ;;
 ;; So... no for p' and q':
 ;;
-;; p' = bq + aq + ap
-;; q' = bp + aq
-;;
+;; p' = 
+;; q' 
 
 (defn new-p
-  [a b p q])
+  [a b p q]
+  )
 
 (defn new-q
-  [a b p q])
+  [a b p q]
+  )
 
 (defn fib-log-iter
   ([n] (fib-log-iter 1 0 0 1 n))
