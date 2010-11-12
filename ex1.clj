@@ -556,19 +556,35 @@
 ;; a = 1, b = 0, p = 0, q = 1
 ;; p = (0 * 1) + (1 * 1) + (1 * 0) = 1
 ;; q = (0 * 0) + (1 * 1) = 1
+
+;; a = (bp + aq)q + (bq + aq + ap)q + (bq + aq + ap)p
+;; a = bpq + aqq + bqq + aqq + apq + bqp + aqp + app
+;; a = (pq + qq + qp)b + (2qq + pq + qp + pp)a
+
+;; b = (bp + aq)p + (bq + aq + ap)q
+;; b = bpp + aqp + bqq + aqq + apq
+;; b = (pp + qq)b + (qp + qq + pq)a
+
+;; p' = qp + qq + pq
+;; q' = pp + qq
+;; a = 1, b = 0, p = 0, q = 1
+;;
+;; p' = (1 * 0) + (1 * 1) + (0 * 1) = 1
+;; q' = (0 * 0) + (1 * 1) = 1
+
 ;;
 ;; So... no for p' and q':
 ;;
 ;; p' = 
 ;; q' 
 
-(defn new-p
-  [a b p q]
-  )
+(defn p-prime
+  [p q]
+  (+ (* p p) (* q q)))
 
-(defn new-q
-  [a b p q]
-  )
+(defn q-prime
+  [p q]
+  (+ (* q p) (* q q) (* p q)))
 
 (defn fib-log-iter
   ([n] (fib-log-iter 1 0 0 1 n))
@@ -576,8 +592,8 @@
      (cond (= count 0) b
            (even? count) (recur a
                                 b
-                                (new-p a b p q) ; compute this
-                                (new-q a b p q) ; compute this
+                                (p-prime p q) ; compute this
+                                (q-prime p q) ; compute this
                                 (/ count 2))
            :else (recur (+ (* b q) (* a q) (* a p))
                         (+ (* b p) (* a q))
