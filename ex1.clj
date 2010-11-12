@@ -624,3 +624,16 @@
 ;; actually performed. How many remainder operations are actually
 ;; performed in the normal-order evaluation of (gcd 206 40)? In the
 ;; applicative-order evaluation?
+
+;; applicative order:
+;; (gcd 206 40)
+;; (gcd 40 (mod 206 40)) => (gcd 40 6)
+;; (gcd 40 6)
+;; (gcd 6 (mod 40 6)) => (gcd 6 4)
+;; (gcd 6 4)
+;; (gcd 4 (mod 6 4)) => (gcd 4 2)
+;; (gcd 4 2)
+;; (gcd 2 (mod 4 2)) => (gcd 4 0)
+;; 2
+
+;; normal order:
